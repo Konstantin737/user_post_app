@@ -1,0 +1,33 @@
+.wrapper {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.post_panel {
+   width: 80%;
+   height: auto;
+   margin: 20px auto;
+   box-shadow: 0 0 5px black;
+   border-radius: 5px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+}
+
+.post_panel > * {
+   padding: 5px;
+   text-align: center;
+}
+
+.image_avatar {
+   width: 200px;
+   height: auto;
+   margin: 15px 15px;
+   border-radius: 3px;
+}
+
+.load_btn {
+   width: 80%;
+}

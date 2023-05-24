@@ -1,0 +1,79 @@
+.container {
+   display: flex;
+   align-items: center;
+   margin: 20px;
+}
+
+.container_info {
+   height: auto;
+   display: flex;
+   flex-direction:column;
+   justify-content: space-around;
+}
+
+.container_info > span {
+   margin-top: 20px;
+}
+.container_info > a {
+   margin-top: 20px;
+}
+
+.container_carucele {
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   margin: 20px;
+}
+
+.image_carucele {
+   width: 80%;
+   height: auto;
+   animation-duration: 2s;
+   animation-name: carucele;
+}
+
+@keyframes carucele {
+   0% {
+      width: 70%;
+   }
+   100% {
+      width: 80%;
+   }
+}
+
+.image_arrow{
+   width: 10%;
+   height: auto;
+}
+
+.image_arrow:hover {
+   filter: drop-shadow(0px 0px 5px black) 
+}
+
+.image_arrow:active {
+   filter: drop-shadow(0px 0px 0px black) 
+}
+
+.photo {
+   width: 150px;
+   margin-right: 10%;
+   border-radius: 10px;
+   animation-duration: 2s;
+   animation-name: slidein;
+   animation-iteration-count: infinite;
+}
+
+@keyframes slidein {
+   0% {
+      transform: rotateZ(0deg);
+   }
+   25% {
+      transform: rotateZ(1deg);
+   }
+   50% {
+      transform: rotateZ(-1deg);
+   }
+   100% {
+      transform: rotateZ(0deg);
+   }
+}

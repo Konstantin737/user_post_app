@@ -1,0 +1,68 @@
+.btn_load {
+   width: 80%;
+   margin: 20px auto;
+}
+
+.spinner {
+   margin: 20px auto;
+}
+
+.post_panel {
+   width: 80%;
+   height: auto;
+   margin: auto;
+   box-shadow: 0 0 5px black;
+   border-radius: 5px;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   padding: 10px;
+}
+
+
+.image_avatar {
+   width: 70px;
+   height: 70px;
+   margin: 15px 15px;
+   border-radius: 3px;
+}
+
+.img_panel:hover {
+   box-shadow: 0 0 3px black;
+}
+
+.img_panel:active {
+   box-shadow: 0 0 1px black;
+}
+
+.like_btn {
+   margin: auto 10px;
+   border: none;
+   background: none;
+   box-shadow: 0 0 1px black;
+   border-radius: 2px;
+}
+
+.like_btn:hover {
+   box-shadow: 0 0 3px black;
+}
+
+.like_btn:active {
+   box-shadow: 0 0 1px black;
+}
+
+.img_panel{
+   position: relative;
+   margin: 10px;
+   border-radius: 5px;
+}
+
+.link {
+   position: absolute;
+   left: 10px;
+   top: 10px;
+   cursor: pointer;
+   width: 80px;
+   height: 80px;
+   font-size: 0;
+}
