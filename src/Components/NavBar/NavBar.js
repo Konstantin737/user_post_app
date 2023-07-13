@@ -3,15 +3,19 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
+
+  const userInfo = useSelector(state=>state)
+
   return (
     <>
     {['md'].map((expand) => (
       <Navbar key={expand} expand="lg" bg="dark" variant="dark" className="mb-3">
         <Container fluid>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
-          <Navbar.Brand href="home">"EasyApp"</Navbar.Brand>
+          <Navbar.Brand href="/home">"EasyApp"</Navbar.Brand>
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-${expand}`}
             aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
@@ -24,15 +28,16 @@ const NavBar = () => {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link href="posts">All Posts</Nav.Link>
-                <Nav.Link href="users">All User Info</Nav.Link>
-                <Nav.Link href="developer">Developer Info</Nav.Link>
+                <Nav.Link href="/posts">All Posts</Nav.Link>
+                <Nav.Link href="/users">All User Info</Nav.Link>
+                <Nav.Link href="/developer">Developer Info</Nav.Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
     ))}
+    {userInfo.challenge}
   </>
   )
 }

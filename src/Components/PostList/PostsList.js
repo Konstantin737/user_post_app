@@ -6,10 +6,6 @@ import Spinner from 'react-bootstrap/Spinner';
 import image from './image/i.jpg'
 import PostItem from './PostItem';
 
-
-
-
-
 const PostsList = () => {
    const [dataPosts, setPosts] = useState('')
    const [dataUsers, setDataUsers] = useState('')

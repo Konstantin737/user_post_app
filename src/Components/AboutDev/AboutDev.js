@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useSelector } from 'react-redux';
 import styles from './AboutDev.module.css'
 import photo from './image/photo.png'
 import imagegit from './image/git.jpg'
@@ -29,6 +30,8 @@ import right from './image/right.png'
 
 const AboutDev = () => {
 
+   const userInfo = useSelector(state=>state)
+
    const imagePortfolio = [imgPort1, imgPort2, imgPort3, imgPort4, imgPort5, imgPort6, imgPort7, imgPort8, imgPort9, imgPort10, imgPort11, imgPort12, imgPort13, imgPort14, imgPort15, imgPort16, imgPort17, imgPort18, imgPort19, imgPort20, imgPort21]
    let [count, setCount] = useState(0)
 
@@ -44,30 +47,27 @@ const AboutDev = () => {
       <div className={styles.container}>
          <img className={styles.photo} src={photo} alt='devPhoto'/>
          <div className={styles.container_info}>
-            <span>Имя: Самарцев Константин Александрович</span>
-            <span>Email: samarcev737@yandex.ru</span>
-            <a href='http://site.skilbe.ru/'>http://site.skilbe.ru/</a>
+            <span>Имя: {userInfo.user.lastName} {userInfo.user.firstName} {userInfo.user.middleName}</span>
+            <span>Email: {userInfo.user.email}</span>
+            <a href={userInfo.user.site}>{userInfo.user.site}</a>
          </div>
       </div>
       <div className={styles.container}>
          <img className={styles.photo} src={imagegit} alt='devPhoto'/>
          <div className={styles.container_info}>
-            <a href='https://github.com/Konstantin737?tab=repositories'>https://github.com</a>
+            <a href={userInfo.gitHub}>https://github.com</a>
          </div>
       </div>
       <div className={styles.container}>
          <img className={styles.photo} src={imagecod} alt='devPhoto'/>
          <div className={styles.container_info}>
-            <a href='https://www.codewars.com/users/Samarcev737'>https://www.codewars.com</a>
+            <a href={userInfo.codeWars}>https://www.codewars.com</a>
          </div>
       </div>
       <div className={styles.container}>
          <div className={styles.container_info}>
             <span>Повышение квалификации, курсы:</span>
-            <span>1. HTML и СSS Уровень 1 - 3. Специалист при МГТУ им. Баумана, Web-верстка</span>
-            <span>2. Современный JavaScript с нуля до junior специалиста. Udemy, Frontend-разработчик</span>
-            <span>3. Современный React с Нуля. Udemy, Frontend-разработчик</span>
-            <span>4. Полный курс по JavaScript + React - с нуля до результата. Udemy, Frontend-разработчик</span>
+            {userInfo.courses.map((course, index) => <span className={styles.course_span} key={index}>{index+1+'.'} {course}</span>)}
          </div>
       </div>
       <div className={styles.container_carucele}>

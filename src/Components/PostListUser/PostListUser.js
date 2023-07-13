@@ -49,9 +49,6 @@ function PostListUser() {
             <span>{newArr[0].body}</span>
          </div>
       }
-      {dataUsers&&!pressLoadButton&&<Button variant={`dark`} className={styles.load_btn} size="lg" onClick={()=>{setPressLoadButton(true)}}>
-            {`Load all posts ${dataUsers[id-1].name}`}
-      </Button>}
       {dataPosts&&pressLoadButton&&newArr.map((post, index)=>{
          return(
          <div className={styles.post_panel} key={index}>
@@ -59,6 +56,9 @@ function PostListUser() {
             <span>{post.body}</span>
          </div>)
       })}
+      {dataUsers&&<Button variant={`dark`} className={styles.load_btn} size="lg" onClick={()=>{setPressLoadButton(pressLoadButton===true?false:true)}}>
+         {pressLoadButton===false?`Load other posts ${dataUsers[id-1].name}`:`Сlose other posts ${dataUsers[id-1].name}`}
+      </Button>}
       </div>
    )
 }

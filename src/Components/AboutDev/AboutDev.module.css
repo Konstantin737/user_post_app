@@ -28,16 +28,17 @@
 .image_carucele {
    width: 80%;
    height: auto;
-   animation-duration: 2s;
+   animation-duration: 3s;
    animation-name: carucele;
+   opacity: 1;
 }
 
 @keyframes carucele {
    0% {
-      width: 70%;
+      opacity: 0;
    }
    100% {
-      width: 80%;
+      opacity: 1;
    }
 }
 
@@ -77,3 +78,30 @@
       transform: rotateZ(0deg);
    }
 }
+
+.course_span {
+   border-radius: 5px;
+   margin-left: 10px;
+}
+
+.course_span:hover {
+   animation-duration: 0.5s;
+   animation-name: course;
+}
+
+@keyframes course {
+   0% {
+      transform: translateX(0px);
+   }
+   25% {
+      transform: translateX(3px);
+   }
+   50% {
+      transform: translateX(-3px);
+   }
+   100% {
+      transform: translateX(0px);
+   }
+}
+
+
