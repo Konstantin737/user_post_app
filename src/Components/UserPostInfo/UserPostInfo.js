@@ -1,34 +1,34 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import styles from './UserPostInfo.module.css'
-import DataAPI from '../../ServerData/DataAPI';
 import Spinner from 'react-bootstrap/Spinner';
 import UserItem from './UserItem';
-import image from './image/i.jpg'
+import { useSelector } from 'react-redux';
 
 const UserPostInfo = () => {
    const [dataUsers, setDataUsers] = useState('')
    const [visibleSpinner, setVisibleSpinner] = useState(false)
-   
 
+   const userInfo = useSelector(state=>state)
 
-   async function fetchPosts() {
+   function getUsers() {
       setVisibleSpinner(true)
-      const usersList = await DataAPI.getUsers()
-      usersList.forEach((user)=>{
-         user.user_image = `${image}`
-      })
-      setDataUsers(usersList);
-      setVisibleSpinner(false)
+      setTimeout(()=>{
+         setDataUsers(userInfo.dataUsers);
+         setVisibleSpinner(false)
+      }, 500)
    }
 
    return (
       <div className={'d-grid gap-2'}>
-         <Button variant={`dark ${styles.btn_load}`} size="lg" onClick={fetchPosts}>
+         {!dataUsers&&<Button variant={`dark ${styles.btn_load}`} size="lg" onClick={getUsers}>
             Get all users info
-         </Button>
+         </Button>}
+         {dataUsers&&<Button variant={`dark ${styles.btn_load}`} size="lg" href="/home">
+            Return to Main Menu
+         </Button>}
          {visibleSpinner?<Spinner className={styles.spinner} animation="border"/>:''}
-         {dataUsers?dataUsers.map((user, index)=>{return <UserItem key ={user.id} user={user}/>}):''}
+         {dataUsers?dataUsers.map((user)=>{return <UserItem key ={user.id} user={user}/>}):''}
       </div>
    )
 }

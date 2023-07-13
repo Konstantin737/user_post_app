@@ -11,8 +11,8 @@ const UserItem = ({user, index}) => {
          <div>
          <span>{`Пользователь: ${user.name}`}</span><br/>
             <span>{`Электронная почта: ${user.email}`}</span><br/>
-            <span>{`Номер телефона ${user.phone}`}</span><br/>
-            <span>{`Город ${user.address.city}`}</span>
+            <span>{`Номер телефона: ${user.phone}`}</span><br/>
+            <span>{`Город: ${user.address.city}`}</span>
          </div>
       </div>
    )

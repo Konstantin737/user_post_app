@@ -3,7 +3,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import ava from '../PostList/image/i.jpg'
 import { useSelector } from 'react-redux';
+import styles from './NavBar.module.css'
 
 const NavBar = () => {
 
@@ -28,6 +30,10 @@ const NavBar = () => {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
+                <div className={styles.ava_condeiner}>
+                  <img className={styles.ava} src={ava} alt="avatar"/>
+                  <Nav.Link href="posts/1">Leanne Graham</Nav.Link>
+                </div>
                 <Nav.Link href="/posts">All Posts</Nav.Link>
                 <Nav.Link href="/users">All User Info</Nav.Link>
                 <Nav.Link href="/developer">Developer Info</Nav.Link>

@@ -1,44 +1,44 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import styles from './PostList.module.css'
-import DataAPI from '../../ServerData/DataAPI';
 import Spinner from 'react-bootstrap/Spinner';
-import image from './image/i.jpg'
 import PostItem from './PostItem';
+import { useSelector, useDispatch } from 'react-redux';
+import { getLike } from '../Store/store';
 
 const PostsList = () => {
+
    const [dataPosts, setPosts] = useState('')
    const [dataUsers, setDataUsers] = useState('')
    const [visibleSpinner, setVisibleSpinner] = useState(false)
 
-   async function fetchPosts() {
+   const userInfo = useSelector(state=>state)
+   const dispatch = useDispatch()
+
+   function loadPosts() {
       setVisibleSpinner(true)
-      const postList = await DataAPI.getPosts()
-      postList.forEach((post)=>{
-         post.user_image = `${image}`
-         post.like = false;
-      })
-      setPosts(postList);
-      const usersList = await DataAPI.getUsers()
-      usersList.forEach((user)=>{
-         user.user_image = `${image}`
-      })
-      setDataUsers(usersList);
-      setVisibleSpinner(false)
+      setTimeout(()=>{
+         setVisibleSpinner(false)
+         setPosts(userInfo.data)
+         setDataUsers(userInfo.dataUsers)
+      }, 500)
    }
 
-   const likeIsTrue = (item) => {
-      !dataPosts[item].like?dataPosts[item].like = true:dataPosts[item].like = false;
+   const likeIsTrue = (id) => {
+      dispatch(getLike(id))
    }
 
    return (
       <div className={'d-grid gap-2'}>
-         <Button variant={`dark ${styles.btn_load}`} size="lg" onClick={fetchPosts}>
+         {!dataPosts&&<Button variant={`dark ${styles.btn_load}`} size="lg" onClick={loadPosts}>
             Get all users posts
-         </Button>
+         </Button>}
+         {dataPosts&&<Button variant={`dark ${styles.btn_load}`} size="lg" href="/home">
+            Return to Main Menu
+         </Button>}
          {visibleSpinner?<Spinner className={styles.spinner} animation="border"/>:''}
          {dataPosts&&dataUsers?dataPosts.map((post, index)=>{
-               return <PostItem key ={post.id} post={post} index={index} likeIsTrue={likeIsTrue} dataUsers={dataUsers}/>
+               return <PostItem key = {post.id} post={post} id={post.id} index={index} likeIsTrue={likeIsTrue} dataUsers={dataUsers}/>
             }):''
          }
       </div>

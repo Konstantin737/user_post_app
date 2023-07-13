@@ -1,4 +1,10 @@
 import {  legacy_createStore as createStore } from "redux";
+// import DataAPI from '../../ServerData/DataAPI';
+import { postList, usersList } from "../../ServerData/DataAPI";
+
+// const postList = await DataAPI.getPosts()
+
+// const usersList = await DataAPI.getUsers()
 
 
 const initialState = {
@@ -19,6 +25,8 @@ const initialState = {
    ],
    gitHub: 'https://github.com/Konstantin737?tab=repositories',
    codeWars: 'https://www.codewars.com/users/Samarcev737',
+   data: postList,
+   dataUsers: usersList,
    challenge: <div style={{marginLeft:'20px'}}><span>Необходимо реализовать SPA (single page application) на React.<br/>
    Ключевые технологии, которые необходимо использовать:<br/>
    React<br/>
@@ -33,8 +41,8 @@ const initialState = {
    1. Список постов (главная страница), где будут располагаться все посты.<br/>
    2. Обо мне, где будет располагаться краткая информация о Вас.<br/>
    3. Подробности о пользователе (куда необходимо вывести информацию о пользователе и список его постов)<br/>
-   Получить данные необходимо через фейковое api https://jsonplaceholder.typicode.com.<br/>
-   Подробное описание<br/><br/>
+   Получить данные необходимо через фейковое api https://jsonplaceholder.typicode.com.<br/><br/>
+   Подробное описание:<br/>
    1. Список постов (главная страница)<br/>
    1.1. Должна содержать список всех постов<br/>
    1.2 Каждый пост состоит из заголовка, текста, аватара автора и списка комментариев<br/>
@@ -55,11 +63,21 @@ const initialState = {
    </span></div>
 }
 
-
 const portfolio = ( state = initialState,
 action) => {
+   if(action.type==='GET_LIKE') {
+      state.data.map(item=>item.id===action.id?item.like=!item.like:item.like)
+      // console.log('Like', action.id, state.data[action.id-1]);
+      console.log(state.data);
+   }
    return state
 }
+
+//actions
+export const getLike = (id) => ({
+   type: 'GET_LIKE',
+   id
+})
 
 export const storeUser = createStore(portfolio)
 

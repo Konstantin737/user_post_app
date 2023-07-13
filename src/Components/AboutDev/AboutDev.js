@@ -1,5 +1,10 @@
 import React, { useState } from "react"
 import { useSelector } from 'react-redux';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 import styles from './AboutDev.module.css'
 import photo from './image/photo.png'
 import imagegit from './image/git.jpg'
@@ -44,6 +49,36 @@ const AboutDev = () => {
 
    return (
       <>
+      {['md'].map((expand) => (
+         <Navbar key={expand} expand="lg" bg="dark" variant="dark" className="mb-3">
+         <Container fluid>
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
+            <Navbar.Brand href="/home">"EasyApp"</Navbar.Brand>
+            <Navbar.Offcanvas
+               id={`offcanvasNavbar-expand-${expand}`}
+               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+               placement="start"
+            >
+               <Offcanvas.Header closeButton>
+               <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                  Menu
+               </Offcanvas.Title>
+               </Offcanvas.Header>
+               <Offcanvas.Body>
+               <Nav className="justify-content-end flex-grow-1 pe-3">
+                  <Nav.Link href="/posts">All Posts</Nav.Link>
+                  <Nav.Link href="/users">All User Info</Nav.Link>
+                  <Nav.Link href="/developer">Developer Info</Nav.Link>
+               </Nav>
+               </Offcanvas.Body>
+            </Navbar.Offcanvas>
+         </Container>
+         </Navbar>
+      ))}
+
+      {/* <Button variant={`dark ${styles.btn_return}`} size="lg" href="/home">
+         Return to Main Menu
+      </Button> */}
       <div className={styles.container}>
          <img className={styles.photo} src={photo} alt='devPhoto'/>
          <div className={styles.container_info}>
@@ -67,7 +102,7 @@ const AboutDev = () => {
       <div className={styles.container}>
          <div className={styles.container_info}>
             <span>Повышение квалификации, курсы:</span>
-            {userInfo.courses.map((course, index) => <span className={styles.course_span} key={index}>{index+1+'.'} {course}</span>)}
+            {userInfo.courses.map((course, index) => <span className={styles.course_span} key={index}>&#128214; {index+1+'.'} {course}</span>)}
          </div>
       </div>
       <div className={styles.container_carucele}>
